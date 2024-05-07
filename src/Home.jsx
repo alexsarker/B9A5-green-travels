@@ -1,5 +1,6 @@
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import TicketArea from "./TicketArea";
 import CouponDivider from "/src/assets/images/cupon-devider.png";
 const Home = () => {
   return (
@@ -80,7 +81,8 @@ const Home = () => {
       </div>
 
       {/* section 3 */}
-
+      <TicketArea></TicketArea>
+      
       <Footer></Footer>
     </div>
   );
