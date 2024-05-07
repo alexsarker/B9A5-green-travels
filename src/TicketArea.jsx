@@ -1,6 +1,19 @@
 import { LuArmchair } from "react-icons/lu";
+import { TbBus, TbSteeringWheel } from "react-icons/tb";
+import Divider from "/src/assets/images/info-devider.png";
+import MiddleLine from "/src/assets/images/line.png";
+import Fare from "/src/assets/images/fare.png";
+import { MdOutlineChair } from "react-icons/md";
+import { PiArmchairFill } from "react-icons/pi";
+import { useState } from "react";
 
 const TicketArea = () => {
+    const [selectedSeats, setSelectedSeats] = useState([])
+
+    const handleSelected = () => {
+        
+    }
+
   return (
     <div className="mt-32 mx-auto border-t-2 border-[#1dd100] rounded-t-[88px] bg-[#F7F8F8]">
       <div className="pb-12">
@@ -14,25 +27,26 @@ const TicketArea = () => {
       </div>
 
       {/* available area */}
-      <div className="flex flex-1 bg-white py-8 mx-72 rounded-3xl gap-10 items-center justify-center">
+      <div className="flex bg-white py-8 mx-48 rounded-3xl px-4 items-center justify-evenly">
         {/* left part */}
         <div>
           {/* left-row-1 */}
           <div className="flex justify-between">
             <div className="flex items-center gap-4">
-              <img src="images/bus-logo.png" alt="" />
+              <TbBus className="text-6xl" />
+
               <div>
                 <h1 className="text-4xl font-bold">Greenline Paribahan</h1>
                 <p>Coach-009-WEB ! AC_Business</p>
               </div>
             </div>
             {/* seats left area */}
-              <span className="flex gap-2 p-4 bg-[#1DD10026] text-color rounded-xl items-center">
-                <LuArmchair className="text-2xl"/>
-                <p>
-                  <span id="seatLeft">8</span> seats left
-                </p>
-              </span>
+            <span className="flex gap-2 p-4 bg-[#1DD10026] text-color rounded-xl items-center">
+              <LuArmchair className="text-2xl" />
+              <p>
+                <span id="seatLeft">8</span> seats left
+              </p>
+            </span>
           </div>
 
           {/* left-row-2 */}
@@ -63,12 +77,12 @@ const TicketArea = () => {
 
         {/* mid area */}
         <div>
-          <img src="images/info-devider.png" alt="" />
+          <img src={Divider} />
         </div>
 
         {/* right area */}
         <div className="flex flex-col items-center text-center">
-          <img className="w-12" src="images/fare.png" alt="" />
+          <img className="w-12" src={Fare} />
           <h1 className="text-4xl font-bold text-black">550 Taka</h1>
           <p className="text-2xl font-bold text-[#03071299]">Per Seat</p>
         </div>
@@ -77,7 +91,7 @@ const TicketArea = () => {
       {/* Ticket Cutter Area */}
       <div
         id="ticketArea"
-        className="flex flex-1 gap-12 bg-white p-14 mx-72 rounded-3xl mt-7"
+        className="flex flex-1 gap-12 bg-white p-14 mx-48 rounded-3xl mt-7"
       >
         {/* left area */}
         <div className="grid grid-flow-row gap-6">
@@ -88,11 +102,12 @@ const TicketArea = () => {
             <hr className="border-dashed border-[#03071233]" />
             <div className="flex justify-between">
               <div className="grid grid-flow-col gap-2">
-                <img src="images/seat-gray.png" alt="" />
+                <MdOutlineChair className="text-2xl text-[#03071280]" />
                 <p className="text-[#03071280] font-medium">Available</p>
               </div>
               <div className="grid grid-flow-col gap-2">
-                <img src="images/seat-green-filled.png" alt="" />
+                <PiArmchairFill className="text-2xl text-color" />
+
                 <p className="text-color font-medium">Selected</p>
               </div>
             </div>
@@ -103,41 +118,39 @@ const TicketArea = () => {
           <div className="flex flex-col gap-6">
             {/* driver */}
             <div className="grid grid-flow-row place-items-end">
-              <img
-                className="py-3 px-10 bg-[#0307121A] rounded-xl"
-                src="images/tabler-icon-steering-wheel.png"
-                alt=""
-              />
+              <span className="py-4 bg-[#F7F8F8] rounded-xl px-8">
+                <TbSteeringWheel className="text-2xl" />
+              </span>
             </div>
 
             {/* Seat selection area */}
             <div className="grid grid-cols-5 items-center gap-8">
               <p className="text-[#03071280] text-center font-medium">A</p>
-              <button className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
+              <button id="a1" onClick={() => handleSelected()} className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
                 A1
               </button>
-              <button className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
+              <button id="a2" onClick={() => handleSelected()} className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
                 A2
               </button>
-              <button className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
+              <button id="a3" onClick={() => handleSelected()} className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
                 A3
               </button>
-              <button className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
+              <button id="a4" onClick={() => handleSelected()} className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
                 A4
               </button>
             </div>
             <div className="grid grid-cols-5 items-center gap-8">
               <p className="text-[#03071280] text-center font-medium">B</p>
-              <button className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
+              <button onClick={() => handleSelected()} className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
                 B1
               </button>
-              <button className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
+              <button onClick={() => handleSelected()} className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
                 B2
               </button>
-              <button className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
+              <button onClick={() => handleSelected()} className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
                 B3
               </button>
-              <button className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
+              <button onClick={() => handleSelected()} className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
                 B4
               </button>
             </div>
@@ -145,7 +158,7 @@ const TicketArea = () => {
         </div>
 
         {/* mid area */}
-        <img src="images/line.png" alt="" />
+        <img src={MiddleLine} />
 
         {/* right area */}
         <div className="grid grid-flow-row gap-8">
@@ -158,30 +171,28 @@ const TicketArea = () => {
 
           {/* total-box */}
           <div className="grid grid-flow-row gap-6 p-8 bg-[#F7F8F8] rounded-xl">
-            <div className="flex justify-between font-medium text-black">
-              <div className="grid grid-flow-col gap-1 items-center">
-                <p>Seat</p>
-                {/* seat number addition */}
-                <p
-                  id="seatInc"
-                  className="py-1 px-2 bg-color rounded-full text-white text-xs"
-                >
-                  0
-                </p>
-              </div>
-              <p>className</p>
-              <p>Price</p>
+            <div className="overflow-x-auto">
+              <table className="table">
+                {/* head */}
+                <thead>
+                  <tr className="text-base text-black">
+                    <th className="">Seat</th>
+                    <th>Class</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* row 1 */}
+                  <tr className="text-base">
+                    <td>A2</td>
+                    <td>Economy</td>
+                    <td>550 taka</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
-            <hr className="border-dashed border-[#03071233]" />
-
-            {/* Popping Area */}
-            <div id="popper" className="flex justify-between gap-4 ">
-              <p id="seatName"></p>
-              <p>Economy</p>
-              <p>550</p>
-            </div>
-
+            {/* <hr className="border-dashed border-[#03071233]" /> */}
             <hr className="border-[#03071233]" />
 
             <div className="flex justify-between text-black font-medium">
@@ -229,7 +240,6 @@ const TicketArea = () => {
           </div>
         </div>
       </div>
-      <div className="pb-32"></div>
     </div>
   );
 };
