@@ -6,12 +6,14 @@ import Fare from "/src/assets/images/fare.png";
 import { MdOutlineChair } from "react-icons/md";
 import { PiArmchairFill } from "react-icons/pi";
 import { useState } from "react";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
 const TicketArea = () => {
   const [listArray, setListArray] = useState([]);
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState(0);
   const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
 
   const handleSelected = (id) => {
     if (listArray.includes(id)) {
@@ -24,16 +26,23 @@ const TicketArea = () => {
 
   const handleApplyCoupon = () => {
     setSuccess("");
+    setError("");
     if (coupon === "NEW15") {
       setDiscount(0.15);
       setSuccess("Coupon Applied Successfully!");
-    } else if (coupon === "COUPLE 20") {
+    } else if (coupon === "Couple 20") {
       setDiscount(0.2);
       setSuccess("Coupon Applied Successfully!");
     } else {
       setDiscount(0);
+      setError("Invalid Coupon!");
     }
+  };
 
+  const getButtonClassName = (seatId) => {
+    return listArray.includes(seatId)
+      ? "btn border-none text-white text-center font-medium py-4 px-11 bg-color rounded-xl"
+      : "btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl";
   };
 
   const totalPrice = listArray.length * 550;
@@ -69,7 +78,7 @@ const TicketArea = () => {
             <span className="flex gap-2 p-4 bg-[#1DD10026] text-color rounded-xl items-center">
               <LuArmchair className="text-2xl" />
               <p>
-                <span id="seatLeft">{8 - listArray.length}</span> seats left
+                <span>{8 - listArray.length}</span> seats left
               </p>
             </span>
           </div>
@@ -114,10 +123,7 @@ const TicketArea = () => {
       </div>
 
       {/* Ticket Cutter Area */}
-      <div
-        id="ticketArea"
-        className="flex flex-1 gap-12 bg-white p-14 mx-48 rounded-3xl mt-7"
-      >
+      <div className="flex flex-1 gap-12 bg-white p-14 mx-48 rounded-3xl mt-7">
         {/* left area */}
         <div className="grid grid-flow-row gap-6">
           <div className="grid grid-flow-row">
@@ -153,30 +159,26 @@ const TicketArea = () => {
             <div className="grid grid-cols-5 items-center gap-2">
               <p className="text-[#03071280] text-center font-medium">A</p>
               <button
-                id="a1"
                 onClick={() => handleSelected("A1")}
-                className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl"
+                className={getButtonClassName("A1")}
               >
                 A1
               </button>
               <button
-                id="a2"
                 onClick={() => handleSelected("A2")}
-                className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl"
+                className={getButtonClassName("A2")}
               >
                 A2
               </button>
               <button
-                id="a3"
                 onClick={() => handleSelected("A3")}
-                className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl"
+                className={getButtonClassName("A3")}
               >
                 A3
               </button>
               <button
-                id="a4"
                 onClick={() => handleSelected("A4")}
-                className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl"
+                className={getButtonClassName("A4")}
               >
                 A4
               </button>
@@ -184,30 +186,26 @@ const TicketArea = () => {
             <div className="grid grid-cols-5 items-center gap-2">
               <p className="text-[#03071280] text-center font-medium">B</p>
               <button
-                id="b1"
                 onClick={() => handleSelected("B1")}
-                className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl"
+                className={getButtonClassName("B1")}
               >
                 B1
               </button>
               <button
-                id="b2"
                 onClick={() => handleSelected("B2")}
-                className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl"
+                className={getButtonClassName("B2")}
               >
                 B2
               </button>
               <button
-                id="b3"
                 onClick={() => handleSelected("B3")}
-                className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl"
+                className={getButtonClassName("B3")}
               >
                 B3
               </button>
               <button
-                id="b4"
                 onClick={() => handleSelected("B4")}
-                className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl"
+                className={getButtonClassName("B4")}
               >
                 B4
               </button>
@@ -286,6 +284,7 @@ const TicketArea = () => {
             {success && (
               <span className="text-green-500 text-center">{success}</span>
             )}
+            {error && <span className="text-red-500 text-center">{error}</span>}
 
             {/* Grand Total area */}
             <div className="flex justify-between text-black font-medium">
@@ -298,12 +297,41 @@ const TicketArea = () => {
 
           {/* NEXT button */}
           <div>
+            {/* Open the modal using document.getElementById('ID').showModal() method */}
             <button
-              id="nextBtn"
-              className="py-5 px-52 bg-color text-white text-xl font-extrabold rounded-2xl"
+              onClick={() => document.getElementById("my_modal_1").showModal()}
+              className={
+                listArray.length > 4
+                  ? "py-5 px-52 text-white text-xl bg-gray-200 font-extrabold rounded-2xl disabled"
+                  : "py-5 px-52 bg-color text-white text-xl font-extrabold rounded-2xl"
+              }
             >
               Next
             </button>
+            {listArray.length > 0 && (
+              <dialog id="my_modal_1" className="modal">
+                <div className="modal-box text-center px-12">
+                  <IoMdCheckmarkCircleOutline className="text-color text-9xl mx-auto" />
+                  <h3 className="font-bold text-2xl text-color">SUCCESS</h3>
+                  <p className="py-4 text-gray-600 font-bold">
+                    Thank you for Booking Our Bus Seats.
+                    <br />
+                    We are working hard to find the best service and deals for
+                    you.
+                  </p>
+                  <p>Shortly you will find a confirmation in your email</p>
+                  <div className="flex justify-center">
+                    <div className="modal-action">
+                      <form method="dialog">
+                        <button className="btn bg-color text-white px-16 rounded-full">
+                          Continue
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </dialog>
+            )}
           </div>
 
           {/* T&C CP */}

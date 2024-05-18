@@ -2,10 +2,11 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import TicketArea from "./TicketArea";
 import CouponDivider from "/src/assets/images/cupon-devider.png";
+
 const Home = () => {
   return (
     <div className="container mx-auto mt-12">
-      <Navbar></Navbar>
+      <Navbar />
 
       {/* section 1 */}
       <div className="hero container mx-auto min-h-screen bg-[url(/src/assets/images/banner.png)] rounded-3xl max-h-[550px]">
@@ -81,9 +82,8 @@ const Home = () => {
       </div>
 
       {/* section 3 */}
-      <TicketArea></TicketArea>
-      
-      <Footer></Footer>
+      <TicketArea />
+      <Footer />
     </div>
   );
 };
