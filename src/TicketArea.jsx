@@ -9,6 +9,9 @@ import { useState } from "react";
 
 const TicketArea = () => {
   const [listArray, setListArray] = useState([]);
+  const [coupon, setCoupon] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [success, setSuccess] = useState("");
 
   const handleSelected = (id) => {
     if (listArray.includes(id)) {
@@ -18,6 +21,23 @@ const TicketArea = () => {
     }
     console.log(listArray);
   };
+
+  const handleApplyCoupon = () => {
+    setSuccess("");
+    if (coupon === "NEW15") {
+      setDiscount(0.15);
+      setSuccess("Coupon Applied Successfully!");
+    } else if (coupon === "COUPLE 20") {
+      setDiscount(0.2);
+      setSuccess("Coupon Applied Successfully!");
+    } else {
+      setDiscount(0);
+    }
+
+  };
+
+  const totalPrice = listArray.length * 550;
+  const discountedPrice = totalPrice - totalPrice * discount;
 
   return (
     <div className="mt-32 mx-auto border-t-2 border-[#1dd100] rounded-t-[88px] bg-[#F7F8F8]">
@@ -49,7 +69,7 @@ const TicketArea = () => {
             <span className="flex gap-2 p-4 bg-[#1DD10026] text-color rounded-xl items-center">
               <LuArmchair className="text-2xl" />
               <p>
-                <span id="seatLeft">{8-listArray.length}</span> seats left
+                <span id="seatLeft">{8 - listArray.length}</span> seats left
               </p>
             </span>
           </div>
@@ -99,7 +119,7 @@ const TicketArea = () => {
         className="flex flex-1 gap-12 bg-white p-14 mx-48 rounded-3xl mt-7"
       >
         {/* left area */}
-        <span className="grid grid-flow-row gap-6">
+        <div className="grid grid-flow-row gap-6">
           <div className="grid grid-flow-row">
             <h2 className="text-black text-2xl font-semibold">
               Select Your Seat
@@ -193,16 +213,14 @@ const TicketArea = () => {
               </button>
             </div>
           </div>
-        </span>
+        </div>
         {/* ----------------------Seat selection area end---------------------- */}
 
         {/* mid area */}
-        <span>
-          <img src={MiddleLine} />
-        </span>
+        <img src={MiddleLine} />
 
         {/* right area */}
-        <span className="grid grid-flow-row gap-8">
+        <div className="grid grid-flow-row gap-8">
           <div className="grid grid-flow-row gap-6">
             <h2 className="text-black text-2xl font-semibold">
               Select Your Seat
@@ -245,7 +263,7 @@ const TicketArea = () => {
             <div className="flex justify-between text-black font-medium">
               <p>Total Price</p>
               <p>
-                BDT <span>{listArray.length * 550}</span>
+                BDT <span>{totalPrice}</span>
               </p>
             </div>
 
@@ -255,17 +273,25 @@ const TicketArea = () => {
                 type="text"
                 className="grow"
                 placeholder="Have any coupon?"
+                value={coupon}
+                onChange={(e) => setCoupon(e.target.value)}
               />
-              <button className="bg-color px-6 py-3 text-white font-semibold rounded-lg">
+              <button
+                onClick={handleApplyCoupon}
+                className="bg-color px-6 py-3 text-white font-semibold rounded-lg"
+              >
                 Apply
               </button>
             </label>
+            {success && (
+              <span className="text-green-500 text-center">{success}</span>
+            )}
 
             {/* Grand Total area */}
             <div className="flex justify-between text-black font-medium">
               <p>Grand Total</p>
               <p>
-                BDT <span>{listArray.length * 550}</span>
+                BDT <span>{discountedPrice.toFixed(2)}</span>
               </p>
             </div>
           </div>
@@ -285,7 +311,7 @@ const TicketArea = () => {
             <a href="#">Terms and Conditions</a>
             <a href="#">Cancellation Policy</a>
           </div>
-        </span>
+        </div>
       </div>
     </div>
   );
