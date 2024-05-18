@@ -8,11 +8,16 @@ import { PiArmchairFill } from "react-icons/pi";
 import { useState } from "react";
 
 const TicketArea = () => {
-    const [selectedSeats, setSelectedSeats] = useState([])
+  const [listArray, setListArray] = useState([]);
 
-    const handleSelected = () => {
-        
+  const handleSelected = (id) => {
+    if (listArray.includes(id)) {
+      setListArray(listArray.filter((item) => item !== id));
+    } else {
+      setListArray([...listArray, id]);
     }
+    console.log(listArray);
+  };
 
   return (
     <div className="mt-32 mx-auto border-t-2 border-[#1dd100] rounded-t-[88px] bg-[#F7F8F8]">
@@ -44,7 +49,7 @@ const TicketArea = () => {
             <span className="flex gap-2 p-4 bg-[#1DD10026] text-color rounded-xl items-center">
               <LuArmchair className="text-2xl" />
               <p>
-                <span id="seatLeft">8</span> seats left
+                <span id="seatLeft">{8-listArray.length}</span> seats left
               </p>
             </span>
           </div>
@@ -94,7 +99,7 @@ const TicketArea = () => {
         className="flex flex-1 gap-12 bg-white p-14 mx-48 rounded-3xl mt-7"
       >
         {/* left area */}
-        <div className="grid grid-flow-row gap-6">
+        <span className="grid grid-flow-row gap-6">
           <div className="grid grid-flow-row">
             <h2 className="text-black text-2xl font-semibold">
               Select Your Seat
@@ -123,45 +128,81 @@ const TicketArea = () => {
               </span>
             </div>
 
-            {/* Seat selection area */}
-            <div className="grid grid-cols-5 items-center gap-8">
+            {/* -----------------------Seat selection area----------------------- */}
+
+            <div className="grid grid-cols-5 items-center gap-2">
               <p className="text-[#03071280] text-center font-medium">A</p>
-              <button id="a1" onClick={() => handleSelected()} className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
+              <button
+                id="a1"
+                onClick={() => handleSelected("A1")}
+                className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl"
+              >
                 A1
               </button>
-              <button id="a2" onClick={() => handleSelected()} className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
+              <button
+                id="a2"
+                onClick={() => handleSelected("A2")}
+                className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl"
+              >
                 A2
               </button>
-              <button id="a3" onClick={() => handleSelected()} className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
+              <button
+                id="a3"
+                onClick={() => handleSelected("A3")}
+                className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl"
+              >
                 A3
               </button>
-              <button id="a4" onClick={() => handleSelected()} className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
+              <button
+                id="a4"
+                onClick={() => handleSelected("A4")}
+                className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl"
+              >
                 A4
               </button>
             </div>
-            <div className="grid grid-cols-5 items-center gap-8">
+            <div className="grid grid-cols-5 items-center gap-2">
               <p className="text-[#03071280] text-center font-medium">B</p>
-              <button onClick={() => handleSelected()} className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
+              <button
+                id="b1"
+                onClick={() => handleSelected("B1")}
+                className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl"
+              >
                 B1
               </button>
-              <button onClick={() => handleSelected()} className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
+              <button
+                id="b2"
+                onClick={() => handleSelected("B2")}
+                className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl"
+              >
                 B2
               </button>
-              <button onClick={() => handleSelected()} className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
+              <button
+                id="b3"
+                onClick={() => handleSelected("B3")}
+                className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl"
+              >
                 B3
               </button>
-              <button onClick={() => handleSelected()} className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl">
+              <button
+                id="b4"
+                onClick={() => handleSelected("B4")}
+                className="btn border-none text-[#03071280] text-center font-medium py-4 px-11 bg-[#F7F8F8] rounded-xl"
+              >
                 B4
               </button>
             </div>
           </div>
-        </div>
+        </span>
+        {/* ----------------------Seat selection area end---------------------- */}
 
         {/* mid area */}
-        <img src={MiddleLine} />
+        <span>
+          <img src={MiddleLine} />
+        </span>
 
         {/* right area */}
-        <div className="grid grid-flow-row gap-8">
+        <span className="grid grid-flow-row gap-8">
           <div className="grid grid-flow-row gap-6">
             <h2 className="text-black text-2xl font-semibold">
               Select Your Seat
@@ -176,18 +217,24 @@ const TicketArea = () => {
                 {/* head */}
                 <thead>
                   <tr className="text-base text-black">
-                    <th className="">Seat</th>
+                    <th>
+                      Seat{" "}
+                      <span className="text-white px-2 py-1 bg-color rounded-full">
+                        {listArray.length}
+                      </span>
+                    </th>
                     <th>Class</th>
                     <th>Price</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {/* row 1 */}
-                  <tr className="text-base">
-                    <td>A2</td>
-                    <td>Economy</td>
-                    <td>550 taka</td>
-                  </tr>
+                  {listArray.map((seat) => (
+                    <tr key={seat} className="text-base">
+                      <td>{seat}</td>
+                      <td>Economy</td>
+                      <td>550 taka</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -198,7 +245,7 @@ const TicketArea = () => {
             <div className="flex justify-between text-black font-medium">
               <p>Total Price</p>
               <p>
-                BDT <span>0</span>
+                BDT <span>{listArray.length * 550}</span>
               </p>
             </div>
 
@@ -218,7 +265,7 @@ const TicketArea = () => {
             <div className="flex justify-between text-black font-medium">
               <p>Grand Total</p>
               <p>
-                BDT <span>0</span>
+                BDT <span>{listArray.length * 550}</span>
               </p>
             </div>
           </div>
@@ -238,7 +285,7 @@ const TicketArea = () => {
             <a href="#">Terms and Conditions</a>
             <a href="#">Cancellation Policy</a>
           </div>
-        </div>
+        </span>
       </div>
     </div>
   );
