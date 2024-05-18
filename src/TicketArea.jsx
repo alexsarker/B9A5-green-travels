@@ -302,8 +302,8 @@ const TicketArea = () => {
               onClick={() => document.getElementById("my_modal_1").showModal()}
               className={
                 listArray.length > 4
-                  ? "py-5 px-52 text-white text-xl bg-gray-200 font-extrabold rounded-2xl disabled"
-                  : "py-5 px-52 bg-color text-white text-xl font-extrabold rounded-2xl"
+                  ? "py-5 w-full text-white text-xl bg-gray-200 font-extrabold rounded-2xl hidden"
+                  : "py-5 w-full bg-color text-white text-xl font-extrabold rounded-2xl"
               }
             >
               Next
